@@ -10,16 +10,25 @@ import { AlertModule } from 'ng2-bootstrap/alert';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, BaseRequestOptions } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './ui/navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthGuard } from './guards/auth.guards';
+import { fakeBackendProvider } from './helpers/fake-backend';
+import { MockBackend } from '@angular/http/testing';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 
   ],
-  providers: [],
+  providers: [UserService,
+    AuthenticationService,
+    AuthGuard,
+    // providers used to create fake backend
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
