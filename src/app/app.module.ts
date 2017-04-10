@@ -15,20 +15,25 @@ import { HttpModule, BaseRequestOptions } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './ui/login/login.component';
+import { HomeComponent } from './containers/home/home.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guards';
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { MockBackend } from '@angular/http/testing';
+import { RegisterComponent } from './register/register.component';
+import { AlertComponent } from './directives/alert/alert.component';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,7 @@ import { MockBackend } from '@angular/http/testing';
   providers: [UserService,
     AuthenticationService,
     AuthGuard,
+    AlertService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

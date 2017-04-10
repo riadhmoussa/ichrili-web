@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../models/iuser';
-import { UserService } from '../services/user.service';
+import { IUser } from '../../models/iuser';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // get users from secure api end point
-    this.userService.getUsers()
+    this.userService.getAll()
       .subscribe(users => {
         this.users = users;
       });
