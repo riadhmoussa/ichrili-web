@@ -1,42 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
 
-import { AuthenticationService } from './index';
+import { AppConfig } from '../app.config';
 import { IUser } from '../models/index';
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) { }
+  constructor(private http: Http, private config: AppConfig) { }
 
   getAll() {
-    return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+    return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
   }
 
-  getById(id: number) {
-    return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+  getById(_id: string) {
+    return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
   }
 
   create(user: IUser) {
-    return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+    return this.http.post(this.config.apiUrl + '/users/register', user, this.jwt());
   }
 
   update(user: IUser) {
-    return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+    return this.http.put(this.config.apiUrl + '/users/' + user.id, user, this.jwt());
   }
 
-  delete(id: number) {
-    return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+  delete(_id: string) {
+    return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());
   }
 
   // private helper methods
 
   private jwt() {
     // create authorization header with jwt token
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
-      let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      console.log(headers);
       return new RequestOptions({ headers: headers });
     }
   }

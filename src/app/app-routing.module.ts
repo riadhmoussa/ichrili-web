@@ -7,12 +7,10 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
-    children: []
+    path: 'login', component: LoginComponent
   },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-   { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' }
 ];
 
@@ -21,3 +19,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

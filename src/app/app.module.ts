@@ -20,11 +20,10 @@ import { HomeComponent } from './containers/home/home.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guards';
-import { fakeBackendProvider } from './helpers/fake-backend';
-import { MockBackend } from '@angular/http/testing';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './directives/alert/alert.component';
 import { AlertService } from './services/alert.service';
+import { AppConfig } from './app.config';
 
 @NgModule({
   declarations: [
@@ -56,10 +55,10 @@ import { AlertService } from './services/alert.service';
     AuthenticationService,
     AuthGuard,
     AlertService,
-    // providers used to create fake backend
-    fakeBackendProvider,
-    MockBackend,
-    BaseRequestOptions],
+    AppConfig,
+    UserService,
+    BaseRequestOptions,
+    AppConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
