@@ -25,7 +25,6 @@ import {AlertComponent }from './directives/alert/alert.component';
 import {AlertService }from './services/alert.service'; 
 import {AppConfig }from './app.config'; 
 import {SettingsModule }from './modules/settings/settings.module'; 
-import {UpdateSettingsComponent }from './modules/update-settings/update-settings.component'; 
 import {CUSTOM_ELEMENTS_SCHEMA }from '@angular/core'; 
 
 @NgModule( {

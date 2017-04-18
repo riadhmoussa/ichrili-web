@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../navabar/navbar/navbar.component';
+import { NavbarComponent } from '../../navabar/navbar/navbar.component';
 
 @Component({
   selector: 'app-update-settings',
