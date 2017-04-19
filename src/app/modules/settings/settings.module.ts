@@ -1,5 +1,6 @@
 import { NavbarComponent } from '../navabar/navbar/navbar.component';
 import { NavabarModule } from '../navabar/navabar.module';
+import { NgUploaderOptions } from 'ngx-uploader';
 
 import {ButtonsModule}from 'ng2-bootstrap/buttons'; 
 import {ModalModule}from 'ng2-bootstrap/modal'; 
@@ -15,6 +16,7 @@ import {BrowserModule }from '@angular/platform-browser';
 import {FormsModule }from '@angular/forms'; 
 import {AlertModule}from 'ng2-bootstrap/alert'; 
 import {AccordionModule}from 'ng2-bootstrap/accordion'; 
+import {NgUploaderModule} from 'ngx-uploader';
 
 
 @NgModule( {
@@ -27,8 +29,7 @@ AlertModule.forRoot(),
 AccordionModule.forRoot(), 
 ButtonsModule.forRoot(), 
 ModalModule.forRoot(),
-NavabarModule
-], 
+NavabarModule,NgUploaderModule], 
 declarations:[UpdateSettingsComponent, UploadAvatarComponent], 
 providers:[UserService, AuthGuard, AlertService, BaseRequestOptions], 
 schemas:[ CUSTOM_ELEMENTS_SCHEMA ], 
