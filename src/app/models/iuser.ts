@@ -4,4 +4,5 @@ export class IUser {
     password: string;
     firstName: string;
     lastName: string;
+    avatarçurl: string;
 }

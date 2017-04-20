@@ -2,7 +2,7 @@ import { Component,  NgZone, Inject, EventEmitter, Input } from '@angular/core';
 import { NgUploaderOptions, UploadedFile, UploadRejected } from 'ngx-uploader';
 
 
-const user_id: string = JSON.parse(localStorage.getItem('currentUser'))._id;
+const user: any = JSON.parse(localStorage.getItem('currentUser'));
 
 @Component({
   selector: 'app-upload-avatar',
@@ -23,7 +23,7 @@ export class UploadAvatarComponent  {
       filterExtensions: true,
       allowedExtensions: ['jpg', 'png', 'jpeg'],
       maxSize: 2097152,
-      data: { userId: user_id },
+      data: { userId: user._id },
       autoUpload: false,
       fieldName: 'avatar',
       fieldReset: true,
