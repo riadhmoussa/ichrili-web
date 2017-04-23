@@ -1,21 +1,19 @@
-import { Component,  NgZone, Inject, EventEmitter, Input } from '@angular/core';
+import { Component, NgZone, Inject, EventEmitter, Input, OnInit } from '@angular/core';
 import { NgUploaderOptions, UploadedFile, UploadRejected } from 'ngx-uploader';
-
-
-const user: any = JSON.parse(localStorage.getItem('currentUser'));
 
 @Component({
   selector: 'app-upload-avatar',
   templateUrl: './upload-avatar.component.html',
   styleUrls: ['./upload-avatar.component.css']
 })
-export class UploadAvatarComponent  {
+export class UploadAvatarComponent  implements OnInit{
  @Input() private options: NgUploaderOptions;
   response: any;
   sizeLimit: number = 5000000; // 1MB
   previewData: any;
   errorMessage: string;
   inputUploadEvents: EventEmitter<string>;
+  currentUser: any = {};
 
   constructor(@Inject(NgZone) private zone: NgZone) {
     this.options = new NgUploaderOptions({
@@ -23,7 +21,7 @@ export class UploadAvatarComponent  {
       filterExtensions: true,
       allowedExtensions: ['jpg', 'png', 'jpeg'],
       maxSize: 2097152,
-      data: { userId: user._id },
+      data: { userId: ((JSON.parse(localStorage.getItem('currentUser'))._id))},
       autoUpload: false,
       fieldName: 'avatar',
       fieldReset: true,
@@ -52,6 +50,7 @@ export class UploadAvatarComponent  {
         this.response = data;
         if (data && data.response) {
           this.response = JSON.parse(data.response);
+          this.errorMessage = this.response.err_desc;
         }
       });
     });
@@ -59,6 +58,10 @@ export class UploadAvatarComponent  {
 
   handlePreviewData(data: any) {
     this.previewData = data;
+  }
+
+  ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 }

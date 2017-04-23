@@ -17,7 +17,6 @@ export class UserBadgeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.warn(this.currentUser);
     if ( this.currentUser.avatar_url) {
       this.path_to_avatar =  this.currentUser.avatar_url;
         }else {
