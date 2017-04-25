@@ -29,38 +29,36 @@ import {CUSTOM_ELEMENTS_SCHEMA }from '@angular/core';
 import {UserBadgeComponent }from './ui/user-badge/user-badge.component';
 
 @NgModule( {
-declarations:[
-    AppComponent,
-LoginComponent,
-HomeComponent,
-RegisterComponent,
-AlertComponent, UserBadgeComponent
-  ],
-imports: [
-    BrowserModule,
-FormsModule,
-HttpModule,
-AppRoutingModule,
-AlertModule.forRoot(),
-AccordionModule.forRoot(),
-ButtonsModule.forRoot(),
-CarouselModule.forRoot(),
-CollapseModule.forRoot(),
-BsDropdownModule.forRoot(),
-ModalModule.forRoot(),
-PaginationModule.forRoot(),
-RatingModule.forRoot(),
-SettingsModule,
-NavabarModule
-
-
-  ],
-providers:  [UserService,
-  AuthenticationService,
-  AuthGuard,
-  AlertService,
-  BaseRequestOptions,
-  AppConfig],
-bootstrap: [ AppComponent ]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        HomeComponent,
+        RegisterComponent,
+        AlertComponent,
+        UserBadgeComponent
+      ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        AppRoutingModule,
+        AlertModule.forRoot(),
+        AccordionModule.forRoot(),
+        ButtonsModule.forRoot(),
+        CarouselModule.forRoot(),
+        CollapseModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        ModalModule.forRoot(),
+        PaginationModule.forRoot(),
+        RatingModule.forRoot(),
+        SettingsModule,
+        NavabarModule],
+    providers:  [UserService,
+      AuthenticationService,
+      AuthGuard,
+      AlertService,
+      BaseRequestOptions,
+      AppConfig],
+    bootstrap: [ AppComponent ]
 })
 export class AppModule {}

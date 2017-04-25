@@ -4,5 +4,10 @@ export class IUser {
     password: string;
     firstName: string;
     lastName: string;
-    avatarçurl: string;
+    avatar_url: string;
+    email: string ;
+    mobile: string;
+    adress: string;
+    city: string;
+    country: string;
 }
