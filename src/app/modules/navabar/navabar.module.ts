@@ -5,10 +5,10 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule,RouterModule
+    CommonModule, RouterModule
   ],
   declarations: [NavbarComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  exports:[NavbarComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  exports: [NavbarComponent]
 })
 export class NavabarModule { }

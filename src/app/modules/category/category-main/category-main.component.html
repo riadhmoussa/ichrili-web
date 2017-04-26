@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div calss="container">
+    <h2>Product Categories</h2>
+    <form name="form" (ngSubmit)="f.form.valid && addCategory()" class="form-inline" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{'has-error': f.submitted && !category_label}">
+            <input type="text" name="category_label" placeholder="label" [(ngModel)]="category.category_label" #category_label="ngModel" class="form-control" />
+            <div *ngIf="f.submitted && !category_label.valid" class="help-block">Category Label is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': f.submitted && !store}">
+            <input type="text" name="store" placeholder="Store" [(ngModel)]="category.store" #store="ngModel" class="form-control" />
+            <div *ngIf="f.submitted && !store.valid" class="help-block">Store is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary"><span class=" glyphicon glyphicon-plus "></span> </button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        </div>
+    </form>
+    <br>
+    <div class="table-hover table table-striped table-bordered table-condensed">
+        <table class="table">
+            <thead style="color:aliceblue;background-color:grey">
+                <tr>
+                    <th>Category</th>
+                    <th>Store</th>
+                    <th>Icon</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let category of categories; let i=index">
+                <tr>
+                    <td scope="row">{{category.category_label}}</td>
+                    <td>{{category.store}}</td>
+                    <td><img [src]=""><span class="glyphicon glyphicon-upload"></span></td>
+                    <td><span class="glyphicon glyphicon-remove" (click)="removeCategory(i)"></span></td>
+                    <td> <span class="glyphicon glyphicon-pencil" (click)="editCategory(i)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
