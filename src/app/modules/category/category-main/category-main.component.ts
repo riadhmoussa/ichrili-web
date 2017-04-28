@@ -1,7 +1,9 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { ICategory } from '../../../models/icategory';
 import { AlertService } from '../../../services/alert.service';
+import { ModalDirective } from 'ng2-bootstrap/modal';
+
 
 @Component({
   selector: 'app-category-main',
@@ -9,7 +11,9 @@ import { AlertService } from '../../../services/alert.service';
   styleUrls: ['./category-main.component.css']
 })
 export class CategoryMainComponent implements OnInit {
-  category: ICategory= new ICategory();
+  @ViewChild('lgModal') public lgModal: ModalDirective;
+  category: any= {};
+  model: any= {} ;
   categories: ICategory[]= [];
   loading = false;
 
@@ -34,15 +38,44 @@ export class CategoryMainComponent implements OnInit {
       });
       this.loading = false;
       this.ngOnInit();
-      this.category = new ICategory();
+      this.category = {};
   }
 
-  removeCategory(index){
-    console.log(this.categories[index]);
+  removeCategory(index) {
+    let category = Object(this.categories[index]);
+    this.categoryService.delete(category._id)
+    .subscribe(
+      data => {
+        this.alertService.success('Category removed successufully', true);
+      },
+      error => {
+        this.alertService.error(error._body);
+        this.loading = false;
+      });
+      this.loading = false;
+      this.ngOnInit();
   }
 
-  editCategory(index){
-    console.log(this.categories[index]);
+
+  editCategory(index) {
+    this.model = Object(this.categories[index]);
+    this.model.id = this.model._id;
+    this.lgModal.show();
+  }
+
+  updateCategory() {
+     this.categoryService.update(this.model)
+     .subscribe(
+       data => {
+          this.alertService.success('Category updated successufully', true);
+       },
+       error => {
+          this.alertService.error(error._body);
+        this.loading = false;
+       }
+     );
+     this.loading = false;
+     this.ngOnInit();
   }
 
 }
