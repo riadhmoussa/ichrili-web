@@ -1,14 +1,17 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, ViewChild,
+   AfterViewInit, EventEmitter } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { ICategory } from '../../../models/icategory';
 import { AlertService } from '../../../services/alert.service';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
 
+const path = 'http://localhost:4000/uploads/categoryicons/';
+
 @Component({
   selector: 'app-category-main',
   templateUrl: './category-main.component.html',
-  styleUrls: ['./category-main.component.css']
+  styleUrls: ['./category-main.component.css'],
 })
 export class CategoryMainComponent implements OnInit {
   @ViewChild('lgModal') public lgModal: ModalDirective;
@@ -22,7 +25,14 @@ export class CategoryMainComponent implements OnInit {
 
   ngOnInit() {
     this.categoryService.getAll()
-    .subscribe(categories => this.categories = categories );
+    .subscribe(categories => {
+      this.categories = categories;
+      this.categories.map((category) => {
+        if ( category.icon_url) {
+          category.icon_url = path + category.icon_url;
+        }
+      });
+    });
   }
 
   addCategory() {
@@ -77,5 +87,6 @@ export class CategoryMainComponent implements OnInit {
      this.loading = false;
      this.ngOnInit();
   }
+
 
 }

@@ -35,7 +35,9 @@
                 <tr>
                     <td scope="row">{{category.category_label}}</td>
                     <td>{{category.store}}</td>
-                    <td><img [src]=""><span class="glyphicon glyphicon-upload"></span></td>
+                    <td><img [src]="category.icon_url || 'http://localhost:4000/uploads/categoryicons/default.png'" style="float:left;margin:5px;padding:2px;">
+                        <app-upload-category-icon [category]='category'></app-upload-category-icon>
+                    </td>
                     <td><span class="glyphicon glyphicon-remove" (click)="removeCategory(i)"></span></td>
                     <td><span class="glyphicon glyphicon-pencil" (click)="editCategory(i)"></span></td>
                 </tr>
