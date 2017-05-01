@@ -28,6 +28,9 @@ import {SettingsModule } from './modules/settings/settings.module';
 import {CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {UserBadgeComponent } from './ui/user-badge/user-badge.component';
 import { CategoryModule } from './modules/category/category.module';
+import { ProductModule } from './modules/product/product.module';
+import { MarketModule } from './modules/market/market.module';
+
 
 
 @NgModule( {
@@ -55,7 +58,9 @@ import { CategoryModule } from './modules/category/category.module';
         RatingModule.forRoot(),
         SettingsModule,
         NavabarModule,
-        CategoryModule],
+        CategoryModule,
+        ProductModule,
+        MarketModule],
     providers:  [UserService,
       AuthenticationService,
       AuthGuard,
