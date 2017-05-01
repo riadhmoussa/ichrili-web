@@ -9,7 +9,7 @@ import { MarketMainComponent } from '../market-main/market-main.component';
   styleUrls: ['./upload-market-logo.component.css']
 })
 export class UploadMarketLogoComponent implements OnInit {
-  @Input() private market: any= {};
+  @Input() private market: IMarket=new IMarket();
   @Input() private options: NgUploaderOptions;
 
   response: any;
@@ -26,7 +26,7 @@ export class UploadMarketLogoComponent implements OnInit {
       maxSize: 2097152,
       data: {},
       autoUpload: false,
-      fieldName: 'icon',
+      fieldName: 'logo',
       fieldReset: true,
       maxUploads: 2,
       method: 'POST',
