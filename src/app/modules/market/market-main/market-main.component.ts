@@ -13,7 +13,6 @@ const path = 'http://localhost:4000/uploads/marketlogos/';
   styleUrls: ['./market-main.component.css']
 })
 export class MarketMainComponent implements OnInit {
-
   @ViewChild('lgModal') public lgModal: ModalDirective;
   market: IMarket= new IMarket();
   model: any= {} ;
@@ -76,11 +75,13 @@ export class MarketMainComponent implements OnInit {
 
   editMarket(index) {
     this.model = Object(this.markets[index]);
-    this.model.id = this.model._id;
+    this.address = this.model.address;
+    this.position = this.model.position;
     this.lgModal.show();
   }
 
   updateMarket() {
+    this.model = Object.assign({}, this.model);
      this.marketService.update(this.model)
      .subscribe(
        data => {

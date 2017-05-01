@@ -19,7 +19,6 @@ constructor(private http: Http, private config: AppConfig) { }
   }
 
   create(market: IMarket) {
-    console.log('market fired from service:', market);
     return this.http.post(this.config.apiUrl + '/markets/add', market, this.jwt());
   }
 
