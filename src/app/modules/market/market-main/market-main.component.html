@@ -71,6 +71,7 @@
                         <th>Market</th>
                         <th>Adress</th>
                         <th>logo</th>
+                        <th>Place</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -78,17 +79,20 @@
                 <tbody *ngFor="let market of markets; let i=index" class="table-striped">
                     <tr>
                         <td scope="row">{{market.market_name}}</td>
-                        <td class="list-group">
+                        <td scope="row" class="list-group">
                             <li class="list-group-item">{{market.address.address1}}</li>
                             <li class="list-group-item">{{market.address.address2}}</li>
                             <li class="list-group-item">{{market.address.postalCode}}</li>
                             <li class="list-group-item">{{market.city}}</li>
                         </td>
-                        <td><img [src]="market.logo_url || 'http://localhost:4000/uploads/categoryicons/default.png'" style="width:101px;float:left;margin:5px;padding:2px;">
+                        <td scope="row"><img [src]="market.logo_url || 'http://localhost:4000/uploads/categoryicons/default.png'" style="width:101px;float:left;margin:5px;padding:2px;">
                             <app-upload-market-logo [market]='market'></app-upload-market-logo>
                         </td>
-                        <td><span class="glyphicon glyphicon-remove" (click)="removeMarket(i)"></span></td>
-                        <td><span class="glyphicon glyphicon-pencil" (click)="editMarket(i)"></span></td>
+                        <td scope="row">
+                            <app-map-render [market]="market"></app-map-render>
+                        </td>
+                        <td scope="row"><span class="glyphicon glyphicon-remove" (click)="removeMarket(i)"></span></td>
+                        <td scope="row"><span class="glyphicon glyphicon-pencil" (click)="editMarket(i)"></span></td>
                     </tr>
                 </tbody>
             </table>

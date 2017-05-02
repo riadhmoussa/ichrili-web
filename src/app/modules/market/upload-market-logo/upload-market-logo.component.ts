@@ -9,7 +9,7 @@ import { MarketMainComponent } from '../market-main/market-main.component';
   styleUrls: ['./upload-market-logo.component.css']
 })
 export class UploadMarketLogoComponent implements OnInit {
-  @Input() private market: IMarket=new IMarket();
+  @Input() private market: IMarket = new IMarket();
   @Input() private options: NgUploaderOptions;
 
   response: any;
@@ -18,7 +18,7 @@ export class UploadMarketLogoComponent implements OnInit {
   errorMessage: string;
   inputUploadEvents: EventEmitter<string>;
 
-  constructor(@Inject(NgZone) private zone: NgZone) {
+  constructor( @Inject(NgZone) private zone: NgZone) {
     this.options = new NgUploaderOptions({
       url: 'http://localhost:4000/market/upload',
       filterExtensions: true,
@@ -64,7 +64,7 @@ export class UploadMarketLogoComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.options.data = {marketId: this.market._id};
+    this.options.data = { marketId: this.market._id };
   }
 
 }

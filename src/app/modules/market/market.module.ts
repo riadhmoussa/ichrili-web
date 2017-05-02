@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarketMainComponent } from './market-main/market-main.component';
 import { MarketService } from '../../services/market.service';
@@ -15,6 +15,10 @@ import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { NavabarModule } from '../navabar/navabar.module';
 import { NgUploaderModule } from 'ngx-uploader';
 import { UploadMarketLogoComponent } from './upload-market-logo/upload-market-logo.component';
+import { AgmCoreModule } from '@agm/core';
+import { AppConfig } from '../../app.config';
+import { MapRenderComponent } from './map-render/map-render.component';
+
 
 @NgModule({
   imports: [
@@ -23,9 +27,9 @@ import { UploadMarketLogoComponent } from './upload-market-logo/upload-market-lo
     AccordionModule.forRoot(), ButtonsModule.forRoot(),
     CollapseModule.forRoot(), BsDropdownModule.forRoot(),
     ModalModule.forRoot(), PaginationModule.forRoot(),
-    NavabarModule, NgUploaderModule
+    NavabarModule, NgUploaderModule, AgmCoreModule.forRoot({ apiKey: 'AIzaSyCUArzI_3xatd_VtjymyH1QP-26mR8zPnQ' })
   ],
-  declarations: [MarketMainComponent, UploadMarketLogoComponent],
+  declarations: [MarketMainComponent, UploadMarketLogoComponent, MapRenderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [MarketService, AlertService, BaseRequestOptions],
   exports: [MarketMainComponent]
