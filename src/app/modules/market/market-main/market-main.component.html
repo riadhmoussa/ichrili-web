@@ -64,8 +64,8 @@
         <br>
 
         <!--  Categories Table -->
-        <div class="table-hover table table-striped table-bordered table-condensed">
-            <table class="table">
+        <div>
+            <table class="table table-hover table-bordered table-condensed">
                 <thead style="color:aliceblue;background-color:grey">
                     <tr>
                         <th>Market</th>
@@ -75,7 +75,7 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let market of markets; let i=index">
+                <tbody *ngFor="let market of markets; let i=index" class="table-striped">
                     <tr>
                         <td scope="row">{{market.market_name}}</td>
                         <td class="list-group">

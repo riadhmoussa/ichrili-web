@@ -82,6 +82,7 @@ export class MarketMainComponent implements OnInit {
 
   updateMarket() {
     this.model = Object.assign({}, this.model);
+    console.log('Model fired from Update Market', this.model);
      this.marketService.update(this.model)
      .subscribe(
        data => {

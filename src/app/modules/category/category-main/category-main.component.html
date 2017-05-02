@@ -24,8 +24,8 @@
         <br>
 
         <!--  Categories Table -->
-        <div class="table-hover table table-striped table-bordered table-condensed">
-            <table class="table">
+        <div>
+            <table class="table table-hover table-bordered table-condensed">
                 <thead style="color:aliceblue;background-color:grey">
                     <tr>
                         <th>Category</th>
@@ -35,7 +35,7 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let category of categories; let i=index">
+                <tbody *ngFor="let category of categories; let i=index" class="table-striped">
                     <tr>
                         <td scope="row">{{category.category_label}}</td>
                         <td>{{category.store}}</td>
