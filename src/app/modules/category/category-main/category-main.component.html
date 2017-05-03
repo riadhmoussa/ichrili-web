@@ -35,7 +35,8 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let category of categories; let i=index" class="table-striped">
+                <tbody *ngFor="let category of categories | paginate: { itemsPerPage: 5, currentPage: p } ;
+                 let i=index" class="table-striped">
                     <tr>
                         <td scope="row">{{category.category_label}}</td>
                         <td>{{category.store}}</td>
@@ -47,6 +48,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
 </div>

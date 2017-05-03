@@ -18,6 +18,7 @@ import { UploadMarketLogoComponent } from './upload-market-logo/upload-market-lo
 import { AgmCoreModule } from '@agm/core';
 import { AppConfig } from '../../app.config';
 import { MapRenderComponent } from './map-render/map-render.component';
+import {NgxPaginationModule} from 'ngx-pagination'
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MapRenderComponent } from './map-render/map-render.component';
     AccordionModule.forRoot(), ButtonsModule.forRoot(),
     CollapseModule.forRoot(), BsDropdownModule.forRoot(),
     ModalModule.forRoot(), PaginationModule.forRoot(),
-    NavabarModule, NgUploaderModule, AgmCoreModule.forRoot({ apiKey: 'AIzaSyCUArzI_3xatd_VtjymyH1QP-26mR8zPnQ' })
+    NavabarModule, NgUploaderModule, AgmCoreModule.forRoot({ apiKey: 'AIzaSyCUArzI_3xatd_VtjymyH1QP-26mR8zPnQ' }),
+    NgxPaginationModule
   ],
   declarations: [MarketMainComponent, UploadMarketLogoComponent, MapRenderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

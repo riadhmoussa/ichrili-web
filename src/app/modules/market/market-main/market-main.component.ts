@@ -1,9 +1,12 @@
-import { Component, OnInit, Output, ViewChild,
-      AfterViewInit, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Output, ViewChild,
+  AfterViewInit, EventEmitter
+} from '@angular/core';
 import { MarketService } from '../../../services/market.service';
 import { IMarket, IAddress, IPosition } from '../../../models/imarket';
 import { AlertService } from '../../../services/alert.service';
 import { ModalDirective } from 'ng2-bootstrap/modal';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const path = 'http://localhost:4000/uploads/marketlogos/';
 
@@ -14,26 +17,29 @@ const path = 'http://localhost:4000/uploads/marketlogos/';
 })
 export class MarketMainComponent implements OnInit {
   @ViewChild('lgModal') public lgModal: ModalDirective;
-  market: IMarket= new IMarket();
-  model: any= {} ;
-  markets: IMarket []= [];
-  address: IAddress= new IAddress();
+  market: IMarket = new IMarket();
+  model: any = {};
+  markets: IMarket[] = [];
+  address: IAddress = new IAddress();
   position: IPosition = new IPosition();
   loading = false;
+  p: number = 1;
+  total: number = 0;
 
   constructor(private marketService: MarketService,
-              private alertService: AlertService) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.marketService.getAll()
-    .subscribe(markets => {
-      this.markets = markets;
-      this.markets.map((market) => {
-        if ( market.logo_url) {
-          market.logo_url = path + market.logo_url;
-        }
+      .subscribe(markets => {
+        this.markets = markets;
+        this.markets.map((market) => {
+          if (market.logo_url) {
+            market.logo_url = path + market.logo_url;
+          }
+        });
       });
-    });
+      this.total=this.markets.length;
   }
 
   addMarket() {
@@ -42,7 +48,7 @@ export class MarketMainComponent implements OnInit {
     this.market.position = this.position;
     this.market = Object.assign({}, this.market);
     this.marketService.create(this.market)
-    .subscribe(
+      .subscribe(
       data => {
         this.alertService.success('Market successfully added', true);
       },
@@ -50,17 +56,17 @@ export class MarketMainComponent implements OnInit {
         this.alertService.error(error._body);
         this.loading = false;
       });
-      this.loading = false;
-      this.ngOnInit();
-      this.market = new IMarket();
-      this.address = new IAddress();
-      this.position = new IPosition();
+    this.loading = false;
+    this.ngOnInit();
+    this.market = new IMarket();
+    this.address = new IAddress();
+    this.position = new IPosition();
   }
 
   removeMarket(index) {
     let market = Object(this.markets[index]);
     this.marketService.delete(market._id)
-    .subscribe(
+      .subscribe(
       data => {
         this.alertService.success('Market removed successufully', true);
       },
@@ -68,8 +74,8 @@ export class MarketMainComponent implements OnInit {
         this.alertService.error(error._body);
         this.loading = false;
       });
-      this.loading = false;
-      this.ngOnInit();
+    this.loading = false;
+    this.ngOnInit();
   }
 
 
@@ -83,18 +89,18 @@ export class MarketMainComponent implements OnInit {
   updateMarket() {
     this.model = Object.assign({}, this.model);
     console.log('Model fired from Update Market', this.model);
-     this.marketService.update(this.model)
-     .subscribe(
-       data => {
-          this.alertService.success('Market updated successufully', true);
-       },
-       error => {
-          this.alertService.error(error._body);
+    this.marketService.update(this.model)
+      .subscribe(
+      data => {
+        this.alertService.success('Market updated successufully', true);
+      },
+      error => {
+        this.alertService.error(error._body);
         this.loading = false;
-       }
-     );
-     this.loading = false;
-     this.ngOnInit();
+      }
+      );
+    this.loading = false;
+    this.ngOnInit();
   }
 
 }

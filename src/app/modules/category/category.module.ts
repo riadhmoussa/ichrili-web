@@ -11,6 +11,7 @@ import { AlertModule, ButtonsModule, CollapseModule,
 import { UploadCategoryIconComponent } from './upload-category-icon/upload-category-icon.component';
 import { NgUploaderModule } from 'ngx-uploader';
 import { AlertService } from '../../services/alert.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AlertService } from '../../services/alert.service';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     NavabarModule,
-    NgUploaderModule
+    NgUploaderModule,
+    NgxPaginationModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   declarations: [CategoryMainComponent, UploadCategoryIconComponent],
