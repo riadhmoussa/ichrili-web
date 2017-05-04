@@ -5,13 +5,18 @@
 <div class="col-md-10">
     <div calss="container">
         <h2>Markets</h2>
-        <br>
-        <div class="form-group">
-            <input class="col-md-4 form-control" type="text" [(ngModel)]="queryString" placeholder="Search">
+        <div style="padding:30px !important">
+            <div class="col-md-4">
+                <input class="form-control" type="text" [(ngModel)]="queryString" placeholder="Search">
+            </div>
         </div>
         <br>
-        <div [hidden]="!displayAddForm">
-            <form name="form" (ngSubmit)="f.form.valid && addMarket()" class="form" #f="ngForm" novalidate>
+        <div [hidden]="!displayAddForm" style="padding:7px !important;width: 100% !important;
+     color: #555 !important;
+     border: 2px solid #ccc !important;
+     border-radius: 7px !important">
+            <h3 style="padding:-3px !important;">New Market</h3>
+            <form name="form" (ngSubmit)="f.form.valid && addMarket()" class="form  myform" #f="ngForm" novalidate>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- 1st Column -->
@@ -59,7 +64,7 @@
                     <!-- End 2ed Col -->
                 </div>
                 <div class="row">
-                    <div class="form-group">
+                    <div class="form-group" style="padding:15px !important;">
                         <button [disabled]="loading" class="btn btn-primary"><span>  Save  </span></button>
                         <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                         />
@@ -91,7 +96,7 @@
                                                        let i=index" class="table-striped">
                     <tr>
                         <td class="row">{{ (p- 1) * 5 + i +1 }}</td>
-                        <td scope="row">{{market.market_name}} <code>{{market._id}}</code></td>
+                        <td scope="row">{{market.market_name}}</td>
                         <td scope="row" class="list-group">
                             <li class="list-group-item">{{market.address.address1}}</li>
                             <li class="list-group-item">{{market.address.address2}}</li>
