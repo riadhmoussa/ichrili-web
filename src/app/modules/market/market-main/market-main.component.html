@@ -5,66 +5,71 @@
 <div class="col-md-10">
     <div calss="container">
         <h2>Markets</h2>
-        <form name="form" (ngSubmit)="f.form.valid && addMarket()" class="form" #f="ngForm" novalidate>
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- 1st Column -->
-                    <div class="form-group" [ngClass]="{'has-error': f.submitted && !market_name}">
-                        <label for="market_name" class="text-primary">Market Name</label>
-                        <input type="text" name="market_name" placeholder="Market Name" [(ngModel)]="market.market_name" #market_name="ngModel" class="form-control" />
-                        <div *ngIf="f.submitted && !market_name.valid" class="help-block">Market Name is required</div>
-                    </div>
-                    <div class="form-group" [ngClass]="{'has-error': f.submitted && !address1 && !address2 && !postalCode}">
-                        <label for="address" class="text-primary">Address</label>
-                        <div class="form-group">
-                            <input type="text" name="address1" placeholder="Adress 1" [(ngModel)]="address.address1" #address1="ngModel" class="form-control" />
-                            <div *ngIf="f.submitted && !address1.valid" class="help-block">Address 1 is required</div>
+        <div [hidden]="!displayAddForm">
+            <form name="form" (ngSubmit)="f.form.valid && addMarket()" class="form" #f="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- 1st Column -->
+                        <div class="form-group" [ngClass]="{'has-error': f.submitted && !market_name}">
+                            <label for="market_name" class="text-primary">Market Name</label>
+                            <input type="text" name="market_name" placeholder="Market Name" [(ngModel)]="market.market_name" #market_name="ngModel" class="form-control" />
+                            <div *ngIf="f.submitted && !market_name.valid" class="help-block">Market Name is required</div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="address2" placeholder="Adress 2" [(ngModel)]="address.address2" #address2="ngModel" class="form-control" />
-                            <div *ngIf="f.submitted && !address2.valid" class="help-block">Address 2 is required</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="postalCode" placeholder="Postal Code" [(ngModel)]="address.postalCode" #postalCode="ngModel" class="form-control" />
-                            <div *ngIf="f.submitted && !postalCode.valid" class="help-block">Postal Code is required</div>
+                        <div class="form-group" [ngClass]="{'has-error': f.submitted && !address1 && !address2 && !postalCode}">
+                            <label for="address" class="text-primary">Address</label>
+                            <div class="form-group">
+                                <input type="text" name="address1" placeholder="Adress 1" [(ngModel)]="address.address1" #address1="ngModel" class="form-control" />
+                                <div *ngIf="f.submitted && !address1.valid" class="help-block">Address 1 is required</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="address2" placeholder="Adress 2" [(ngModel)]="address.address2" #address2="ngModel" class="form-control" />
+                                <div *ngIf="f.submitted && !address2.valid" class="help-block">Address 2 is required</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="postalCode" placeholder="Postal Code" [(ngModel)]="address.postalCode" #postalCode="ngModel" class="form-control" />
+                                <div *ngIf="f.submitted && !postalCode.valid" class="help-block">Postal Code is required</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- end first Column -->
-                <div class="col-md-6">
-                    <div class="form-group" [ngClass]="{'has-error': f.submitted && !city}">
-                        <label for="city" class="text-primary">City</label>
-                        <input type="text" name="city" placeholder="City" [(ngModel)]="market.city" #city="ngModel" class="form-control" />
-                        <div *ngIf="f.submitted && !city.valid" class="help-block">City is required</div>
-                    </div>
+                    <!-- end first Column -->
+                    <div class="col-md-6">
+                        <div class="form-group" [ngClass]="{'has-error': f.submitted && !city}">
+                            <label for="city" class="text-primary">City</label>
+                            <input type="text" name="city" placeholder="City" [(ngModel)]="market.city" #city="ngModel" class="form-control" />
+                            <div *ngIf="f.submitted && !city.valid" class="help-block">City is required</div>
+                        </div>
 
-                    <div class="form-group" [ngClass]="{'has-error': f.submitted && !latitude && !longitude}">
-                        <label for="position" class="text-primary">Geo-Position</label>
-                        <div class="form-group">
-                            <input type="text" name="latitude" placeholder="latitude" [(ngModel)]="position.latitude" #latitude="ngModel" class="form-control" />
-                            <div *ngIf="f.submitted && !latitude.valid" class="help-block">Latitude is required</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="longitude" placeholder="Longitude" [(ngModel)]="position.longitude" #longitude="ngModel" class="form-control" />
-                            <div *ngIf="f.submitted && !longitude.valid" class="help-block">Longitude is required</div>
+                        <div class="form-group" [ngClass]="{'has-error': f.submitted && !latitude && !longitude}">
+                            <label for="position" class="text-primary">Geo-Position</label>
+                            <div class="form-group">
+                                <input type="text" name="latitude" placeholder="latitude" [(ngModel)]="position.latitude" #latitude="ngModel" class="form-control" />
+                                <div *ngIf="f.submitted && !latitude.valid" class="help-block">Latitude is required</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="longitude" placeholder="Longitude" [(ngModel)]="position.longitude" #longitude="ngModel" class="form-control" />
+                                <div *ngIf="f.submitted && !longitude.valid" class="help-block">Longitude is required</div>
+                            </div>
                         </div>
                     </div>
+                    <!-- End 2ed Col -->
                 </div>
-                <!-- End 2ed Col -->
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <button [disabled]="loading" class="btn btn-primary"><span class=" glyphicon glyphicon-plus "></span> </button>
-                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                    />
-                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                <div class="row">
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary"><span>  Save  </span></button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                        />
+                        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <br>
+        <button [disabled]="loading" class="btn btn-primary"><span class=" glyphicon glyphicon-plus" (click)="displayForm()"></span> </button>
         <br>
 
-        <!--  Categories Table -->
+        <!--  Market Table -->
         <div>
+            <br>
             <table class="table table-hover table-bordered table-condensed">
                 <thead style="color:aliceblue;background-color:grey">
                     <tr>

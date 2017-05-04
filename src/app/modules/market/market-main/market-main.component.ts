@@ -25,6 +25,7 @@ export class MarketMainComponent implements OnInit {
   loading = false;
   p: number = 1;
   total: number = 0;
+  displayAddForm: boolean = false;
 
   constructor(private marketService: MarketService,
     private alertService: AlertService) {
@@ -43,6 +44,10 @@ export class MarketMainComponent implements OnInit {
     this.total = this.markets.length;
   }
 
+  displayForm() {
+    this.displayAddForm = !this.displayAddForm;
+  }
+
   addMarket() {
     this.loading = true;
     this.market.address = this.address;
@@ -58,8 +63,8 @@ export class MarketMainComponent implements OnInit {
         this.loading = false;
       });
     this.loading = false;
-    this.ngOnInit();
     this.initilize();
+    this.displayAddForm = false;
   }
 
   removeMarket(index) {
@@ -99,7 +104,6 @@ export class MarketMainComponent implements OnInit {
       );
     this.loading = false;
     this.initilize();
-    this.ngOnInit();
   }
 
   initilize() {
