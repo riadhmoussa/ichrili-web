@@ -7,6 +7,8 @@ import { IMarket, IAddress, IPosition } from '../../../models/imarket';
 import { AlertService } from '../../../services/alert.service';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchMarketPipe } from '../search-market.pipe';
+import _ from 'lodash/lodash';
 
 const path = 'http://localhost:4000/uploads/marketlogos/';
 
@@ -20,15 +22,18 @@ export class MarketMainComponent implements OnInit {
   market: IMarket = new IMarket();
   model: any = {};
   markets: IMarket[] = [];
-  address: IAddress = new IAddress();
-  position: IPosition = new IPosition();
+  address: IAddress;
+  position: IPosition;
   loading = false;
   p: number = 1;
   total: number = 0;
   displayAddForm: boolean = false;
+  searchString: string = '';
 
   constructor(private marketService: MarketService,
     private alertService: AlertService) {
+    this.address = new IAddress();
+    this.position = new IPosition();
   }
 
   ngOnInit() {
@@ -67,8 +72,8 @@ export class MarketMainComponent implements OnInit {
     this.displayAddForm = false;
   }
 
-  removeMarket(index) {
-    let market = Object(this.markets[index - 1]);
+  removeMarket(id) {
+    let market = _.filter(this.markets, ['_id', id]);
     this.marketService.delete(market._id)
       .subscribe(
       data => {
@@ -83,8 +88,8 @@ export class MarketMainComponent implements OnInit {
   }
 
 
-  editMarket(index) {
-    this.model = Object(this.markets[index - 1]);
+  editMarket(id) {
+    this.model = _.filter(this.markets, ['_id', id])[0];
     this.address = this.model.address;
     this.position = this.model.position;
     this.lgModal.show();

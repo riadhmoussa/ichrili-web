@@ -5,6 +5,11 @@
 <div class="col-md-10">
     <div calss="container">
         <h2>Markets</h2>
+        <br>
+        <div class="form-group">
+            <input class="col-md-4 form-control" type="text" [(ngModel)]="queryString" placeholder="Search">
+        </div>
+        <br>
         <div [hidden]="!displayAddForm">
             <form name="form" (ngSubmit)="f.form.valid && addMarket()" class="form" #f="ngForm" novalidate>
                 <div class="row">
@@ -69,7 +74,7 @@
 
         <!--  Market Table -->
         <div>
-            <br>
+            <br> {{querySearch}}
             <table class="table table-hover table-bordered table-condensed">
                 <thead style="color:aliceblue;background-color:grey">
                     <tr>
@@ -82,11 +87,11 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let market of markets | paginate: { itemsPerPage: 5, currentPage: p , totalItems: this.total }; 
+                <tbody *ngFor="let market of markets | searchMarketPipe : queryString | paginate: { itemsPerPage: 5, currentPage: p , totalItems: this.total }; 
                                                        let i=index" class="table-striped">
                     <tr>
                         <td class="row">{{ (p- 1) * 5 + i +1 }}</td>
-                        <td scope="row">{{market.market_name}}</td>
+                        <td scope="row">{{market.market_name}} <code>{{market._id}}</code></td>
                         <td scope="row" class="list-group">
                             <li class="list-group-item">{{market.address.address1}}</li>
                             <li class="list-group-item">{{market.address.address2}}</li>
@@ -99,8 +104,8 @@
                         <td scope="row">
                             <app-map-render [market]="market"></app-map-render>
                         </td>
-                        <td scope="row"><span class="glyphicon glyphicon-remove" (click)="removeMarket( (p - 1) * 5 + i + 1 )"></span></td>
-                        <td scope="row"><span class="glyphicon glyphicon-pencil" (click)="editMarket((p - 1) * 5 + i +1 )"></span></td>
+                        <td scope="row"><span class="glyphicon glyphicon-remove" (click)="removeMarket( market._id )"></span></td>
+                        <td scope="row"><span class="glyphicon glyphicon-pencil" (click)="editMarket( market._id )"></span></td>
                     </tr>
                 </tbody>
             </table>
