@@ -1,0 +1,7 @@
+ .my-pagination /deep/ .ngx-pagination .current {
+     background: red;
+ }
+ 
+ .my-pagination /deep/ .ngx-pagination {
+     cursor: pointer;
+ }

@@ -6,7 +6,7 @@ import { MarketService } from '../../../services/market.service';
 import { IMarket, IAddress, IPosition } from '../../../models/imarket';
 import { AlertService } from '../../../services/alert.service';
 import { ModalDirective } from 'ng2-bootstrap/modal';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const path = 'http://localhost:4000/uploads/marketlogos/';
 
@@ -27,7 +27,8 @@ export class MarketMainComponent implements OnInit {
   total: number = 0;
 
   constructor(private marketService: MarketService,
-    private alertService: AlertService) { }
+    private alertService: AlertService) {
+  }
 
   ngOnInit() {
     this.marketService.getAll()
@@ -39,7 +40,7 @@ export class MarketMainComponent implements OnInit {
           }
         });
       });
-      this.total=this.markets.length;
+    this.total = this.markets.length;
   }
 
   addMarket() {
@@ -58,13 +59,11 @@ export class MarketMainComponent implements OnInit {
       });
     this.loading = false;
     this.ngOnInit();
-    this.market = new IMarket();
-    this.address = new IAddress();
-    this.position = new IPosition();
+    this.initilize();
   }
 
   removeMarket(index) {
-    let market = Object(this.markets[index]);
+    let market = Object(this.markets[index - 1]);
     this.marketService.delete(market._id)
       .subscribe(
       data => {
@@ -80,7 +79,7 @@ export class MarketMainComponent implements OnInit {
 
 
   editMarket(index) {
-    this.model = Object(this.markets[index]);
+    this.model = Object(this.markets[index - 1]);
     this.address = this.model.address;
     this.position = this.model.position;
     this.lgModal.show();
@@ -88,7 +87,6 @@ export class MarketMainComponent implements OnInit {
 
   updateMarket() {
     this.model = Object.assign({}, this.model);
-    console.log('Model fired from Update Market', this.model);
     this.marketService.update(this.model)
       .subscribe(
       data => {
@@ -100,7 +98,13 @@ export class MarketMainComponent implements OnInit {
       }
       );
     this.loading = false;
+    this.initilize();
     this.ngOnInit();
   }
 
+  initilize() {
+    this.market = new IMarket();
+    this.address = new IAddress();
+    this.position = new IPosition();
+  }
 }
