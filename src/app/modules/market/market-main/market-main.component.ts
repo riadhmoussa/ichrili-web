@@ -19,6 +19,8 @@ const path = 'http://localhost:4000/uploads/marketlogos/';
 })
 export class MarketMainComponent implements OnInit {
   @ViewChild('lgModal') public lgModal: ModalDirective;
+  @ViewChild('lgAddModal') public lgAddModal: ModalDirective;
+
   market: IMarket = new IMarket();
   model: any = {};
   markets: IMarket[] = [];
@@ -27,7 +29,6 @@ export class MarketMainComponent implements OnInit {
   loading = false;
   p: number = 1;
   total: number = 0;
-  displayAddForm: boolean = false;
   searchString: string = '';
 
   constructor(private marketService: MarketService,
@@ -50,7 +51,7 @@ export class MarketMainComponent implements OnInit {
   }
 
   displayForm() {
-    this.displayAddForm = !this.displayAddForm;
+    this.lgAddModal.show();
   }
 
   addMarket() {
@@ -69,11 +70,12 @@ export class MarketMainComponent implements OnInit {
       });
     this.loading = false;
     this.initilize();
-    this.displayAddForm = false;
+    this.lgAddModal.hide();
   }
 
   removeMarket(id) {
-    let market = _.filter(this.markets, ['_id', id]);
+    let market = _.filter(this.markets, ['_id', id])[0];
+    console.log(market);
     this.marketService.delete(market._id)
       .subscribe(
       data => {
