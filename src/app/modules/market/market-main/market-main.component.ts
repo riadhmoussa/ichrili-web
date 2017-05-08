@@ -71,6 +71,7 @@ export class MarketMainComponent implements OnInit {
     this.loading = false;
     this.initilize();
     this.lgAddModal.hide();
+    this.ngOnInit();
   }
 
   removeMarket(id) {
@@ -111,6 +112,7 @@ export class MarketMainComponent implements OnInit {
       );
     this.loading = false;
     this.initilize();
+    this.ngOnInit();
   }
 
   initilize() {
